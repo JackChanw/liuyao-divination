@@ -1,0 +1,142 @@
+.result-page {
+  min-height: 100vh;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2rem 1.4rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.result-header {
+  text-align: center;
+  position: relative;
+}
+
+.seal-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: var(--red-seal);
+  color: var(--ink-paper);
+  font-family: var(--font-brush);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.8rem;
+}
+
+.result-question {
+  font-family: var(--font-brush);
+  font-size: 1.5rem;
+  margin: 0;
+  letter-spacing: 0.12em;
+}
+
+.result-hexagrams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.arrow-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-brush);
+  font-size: 1.2rem;
+  color: var(--red-changing);
+  letter-spacing: 0.3em;
+  position: relative;
+}
+
+.arrow-divider::before {
+  content: '→';
+  font-size: 2.4rem;
+  color: var(--ink-light);
+  margin-bottom: -0.2rem;
+}
+
+.result-guaci {
+  background: rgba(255, 252, 240, 0.6);
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  padding: 1.4rem 1.8rem;
+}
+
+.guaci-title {
+  font-family: var(--font-brush);
+  font-size: 1.15rem;
+  margin: 0.2rem 0 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-black);
+}
+
+.guaci-text {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--ink-dark);
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.yaoci-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.yaoci-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--ink-light);
+}
+.yaoci-list li:last-child {
+  border-bottom: none;
+}
+
+.yaoci-title {
+  display: inline-block;
+  font-family: var(--font-brush);
+  color: var(--red-changing);
+  margin-right: 0.8rem;
+  letter-spacing: 0.15em;
+  min-width: 4em;
+}
+
+.yaoci-text {
+  font-family: var(--font-body);
+  color: var(--ink-dark);
+}
+
+.result-interpretation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.interpretation-title {
+  font-family: var(--font-brush);
+  font-size: 1.4rem;
+  margin: 0;
+  letter-spacing: 0.25em;
+  color: var(--ink-black);
+  text-align: center;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--ink-light);
+  border-bottom: 1px solid var(--ink-light);
+}
+
+.error-tip {
+  padding: 0.8rem 1rem;
+  background: rgba(183, 46, 30, 0.08);
+  color: var(--red-seal);
+  font-family: var(--font-body);
+  border-left: 3px solid var(--red-seal);
+}
+
+.result-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}

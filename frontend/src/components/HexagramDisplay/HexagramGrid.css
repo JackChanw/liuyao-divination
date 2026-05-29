@@ -1,0 +1,55 @@
+.hexagram-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4rem 1.8rem;
+  background: rgba(255, 252, 240, 0.5);
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  box-shadow: var(--shadow-ink);
+  min-width: 260px;
+}
+
+.hexagram-header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px dashed var(--ink-light);
+  padding-bottom: 0.7rem;
+  width: 100%;
+}
+
+.hexagram-title {
+  font-family: var(--font-brush);
+  font-size: 1.6rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-black);
+}
+
+.hexagram-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-gray);
+  margin-top: 0.2rem;
+  letter-spacing: 0.1em;
+}
+
+.hexagram-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hexagram-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.row-label {
+  font-family: var(--font-brush);
+  font-size: 0.9rem;
+  color: var(--ink-gray);
+  width: 2.4em;
+  text-align: right;
+  letter-spacing: 0.1em;
+}

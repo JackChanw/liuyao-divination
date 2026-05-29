@@ -1,0 +1,37 @@
+.line-symbol {
+  display: block;
+  overflow: visible;
+}
+
+.line-symbol.changing {
+  animation: pulseChanging 2s ease-in-out infinite;
+}
+
+.line-symbol .yang-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawYang 0.6s ease-out forwards;
+  animation-delay: inherit;
+}
+
+@keyframes drawYang {
+  to { stroke-dashoffset: 0; }
+}
+
+.line-symbol .yin-left {
+  transform-origin: right center;
+  transform: scaleX(0);
+  animation: yinExpand 0.5s ease-out forwards;
+  animation-delay: inherit;
+}
+
+.line-symbol .yin-right {
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: yinExpand 0.5s ease-out forwards;
+  animation-delay: inherit;
+}
+
+@keyframes yinExpand {
+  to { transform: scaleX(1); }
+}

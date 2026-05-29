@@ -1,0 +1,47 @@
+.ink-button {
+  position: relative;
+  background: transparent;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 2px;
+  padding: 0.6rem 2.2rem;
+  font-family: var(--font-brush);
+  font-size: 1.15rem;
+  letter-spacing: 0.25em;
+  color: var(--ink-black);
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.ink-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink-black);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.ink-button:hover:not(:disabled)::before {
+  transform: scaleY(1);
+}
+
+.ink-button:hover:not(:disabled) {
+  color: var(--ink-paper);
+}
+
+.ink-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ink-button-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.ink-button.ghost {
+  border-color: var(--ink-gray);
+  color: var(--ink-gray);
+}

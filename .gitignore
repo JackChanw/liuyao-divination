@@ -1,0 +1,43 @@
+# 环境变量与密钥（绝对不要提交）
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 依赖
+node_modules/
+.venv/
+venv/
+env/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 前端构建产物
+dist/
+build/
+.vite/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 日志
+*.log
+npm-debug.log*
+
+# 锁文件（按需保留：通常应该提交以保证可复现，这里保留默认）
+# package-lock.json

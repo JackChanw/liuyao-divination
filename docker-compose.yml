@@ -1,0 +1,40 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: liuyao-backend:latest
+    container_name: liuyao-backend
+    restart: unless-stopped
+    environment:
+      - RELAY_API_KEY=${RELAY_API_KEY:-}
+      - RELAY_BASE_URL=${RELAY_BASE_URL:-https://relay.example.com/v1}
+      - RELAY_MODEL=${RELAY_MODEL:-gpt-5.5}
+      - HOST=0.0.0.0
+      - PORT=8000
+      # 同源反代后浏览器不会触发 CORS，这里仅保留默认值
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost,http://127.0.0.1,http://localhost:5173}
+    ports:
+      # 暴露 8000 仅用于直连调试（如 curl /api/hexagram/1）
+      - "8000:8000"
+    networks:
+      - liuyao-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: liuyao-frontend:latest
+    container_name: liuyao-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    networks:
+      - liuyao-net
+
+networks:
+  liuyao-net:
+    driver: bridge

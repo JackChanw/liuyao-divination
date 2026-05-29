@@ -1,0 +1,75 @@
+.home-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.seal-corner {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--red-seal);
+  color: var(--ink-paper);
+  font-family: var(--font-brush);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  writing-mode: vertical-rl;
+  border-radius: 1px;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 2.6rem;
+}
+
+.home-title {
+  font-size: 3.2rem;
+  letter-spacing: 0.3em;
+  margin: 0 0 1.2rem 0;
+}
+
+.home-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-gray);
+  letter-spacing: 0.15em;
+  line-height: 2;
+  margin: 0;
+}
+
+.home-form {
+  width: 100%;
+  background: rgba(255, 252, 240, 0.6);
+  border: 1px solid var(--ink-light);
+  padding: 2rem 2rem 1.6rem;
+  border-radius: 4px;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  margin-top: 0.4rem;
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+
+.home-footer {
+  margin-top: 2.4rem;
+  font-family: var(--font-brush);
+  font-size: 0.95rem;
+  color: var(--ink-gray);
+  letter-spacing: 0.4em;
+}

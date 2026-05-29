@@ -1,0 +1,92 @@
+/* 国风水墨色系 */
+:root {
+  --ink-paper: #f5eed8;       /* 宣纸米黄底色 */
+  --ink-paper-deep: #ebdfc0;  /* 暗宣纸 */
+  --ink-black: #1a1008;       /* 浓墨 */
+  --ink-dark: #2d1f15;        /* 深墨 */
+  --ink-gray: #6b5e4e;        /* 淡墨 */
+  --ink-light: #a59885;       /* 极淡墨 */
+  --red-changing: #8b1a1a;    /* 动爻朱砂红 */
+  --red-seal: #b72e1e;        /* 印章红 */
+  --gold-accent: #b8960c;     /* 金色 */
+
+  --font-brush: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', serif;
+  --font-body: 'ZCOOL XiaoWei', 'STSong', 'SimSun', serif;
+
+  --shadow-ink: 0 2px 14px rgba(26, 16, 8, 0.18);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--ink-black);
+  background: var(--ink-paper);
+}
+
+body {
+  /* 宣纸纹理：径向渐变叠加噪点 */
+  background-image:
+    radial-gradient(ellipse at top left, rgba(184, 150, 12, 0.05), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(107, 94, 78, 0.08), transparent 50%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(107, 94, 78, 0.015) 0,
+      rgba(107, 94, 78, 0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  background-attachment: fixed;
+}
+
+a {
+  color: var(--ink-dark);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-brush);
+  color: var(--ink-black);
+  font-weight: normal;
+  letter-spacing: 0.05em;
+}
+
+/* 通用：墨色按钮、墨色边框 */
+.ink-border {
+  border: 1px solid var(--ink-gray);
+  background: rgba(245, 238, 216, 0.6);
+}
+
+/* 印章风格红色文字 */
+.seal-text {
+  color: var(--red-seal);
+  font-family: var(--font-brush);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

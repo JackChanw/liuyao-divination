@@ -1,0 +1,33 @@
+.interpretation-stream {
+  background: rgba(255, 252, 240, 0.7);
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  padding: 1.6rem 2rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-ink);
+}
+
+.interpretation-text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  line-height: 2.1;
+  color: var(--ink-black);
+  letter-spacing: 0.05em;
+  white-space: pre-wrap;
+  word-break: break-word;
+  /* 注：关闭 monospace，使用正文字体 */
+  font-feature-settings: normal;
+}
+
+.cursor-brush {
+  display: inline-block;
+  color: var(--ink-black);
+  animation: cursorBlink 0.9s steps(1) infinite;
+  margin-left: 1px;
+}
+
+@keyframes cursorBlink {
+  50% { opacity: 0; }
+}
