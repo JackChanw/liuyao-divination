@@ -28,6 +28,13 @@ __pycache__/
 dist/
 build/
 .vite/
+*.tsbuildinfo
+
+# SQLite 本地数据库（init_db 会自动建表，无需提交）
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
 
 # IDE
 .idea/
