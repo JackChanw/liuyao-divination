@@ -17,6 +17,10 @@ services:
     ports:
       # 暴露 8000 仅用于直连调试（如 curl /api/hexagram/1）
       - "8000:8000"
+    volumes:
+      # 持久化 SQLite：宿主机文件 ↔ 容器内 /app/liuyao.db
+      # 容器跨重建、compose down 都不丢历史/分享数据
+      - ./backend/liuyao.db:/app/liuyao.db
     networks:
       - liuyao-net
 
