@@ -18,6 +18,10 @@ interface DivinationState {
   appendInterpretation: (chunk: string) => void;
   resetInterpretation: () => void;
 
+  // 当前这局占卜入库后的 token（解卦完成后由 ResultPage 写入）
+  currentToken: string | null;
+  setCurrentToken: (t: string | null) => void;
+
   reset: () => void;
 }
 
@@ -41,11 +45,15 @@ export const useDivinationStore = create<DivinationState>((set) => ({
     set((s) => ({ interpretation: s.interpretation + chunk })),
   resetInterpretation: () => set({ interpretation: '' }),
 
+  currentToken: null,
+  setCurrentToken: (t) => set({ currentToken: t }),
+
   reset: () =>
     set({
       lines: [],
       primaryHexagram: null,
       changedHexagram: null,
       interpretation: '',
+      currentToken: null,
     }),
 }));

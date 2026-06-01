@@ -1,0 +1,172 @@
+.history-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.4rem 3rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.history-header {
+  margin-bottom: 1.4rem;
+}
+
+.history-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ink-light);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.history-title {
+  font-family: var(--font-brush);
+  font-size: 1.8rem;
+  letter-spacing: 0.2em;
+  margin: 0;
+  color: var(--ink-black);
+}
+
+.history-back {
+  font-family: var(--font-brush);
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-gray);
+  transition: color 0.15s;
+}
+
+.history-back:hover {
+  color: var(--red-seal);
+}
+
+.history-sub {
+  font-size: 0.85rem;
+  color: var(--ink-gray);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* 加载/错误/空态 */
+.history-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+}
+
+.history-empty-icon {
+  font-size: 3rem;
+  color: var(--ink-light);
+}
+
+.history-empty-text {
+  font-family: var(--font-brush);
+  font-size: 1.2rem;
+  color: var(--ink-dark);
+  letter-spacing: 0.2em;
+}
+
+.history-empty-tip {
+  font-size: 0.85rem;
+  color: var(--ink-gray);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+
+/* 列表 */
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.history-card {
+  background: rgba(255, 252, 240, 0.6);
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.history-card:hover {
+  border-color: var(--red-seal);
+  box-shadow: 0 2px 10px rgba(183, 46, 30, 0.10);
+  transform: translateY(-1px);
+}
+
+.history-card-inner {
+  display: block;
+  padding: 0.9rem 1.1rem;
+  color: inherit;
+}
+
+.history-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-brush);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-gray);
+  margin-bottom: 0.4rem;
+}
+
+.history-card-time {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-light);
+}
+
+.history-card-hex {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hex-name {
+  color: var(--ink-black);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.hex-arrow {
+  color: var(--red-seal);
+  font-size: 0.8rem;
+}
+
+.history-card-q {
+  font-family: var(--font-brush);
+  font-size: 1.05rem;
+  color: var(--ink-black);
+  letter-spacing: 0.06em;
+  margin: 0.2rem 0 0.4rem;
+  line-height: 1.4;
+  /* 单行省略 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-card-summary {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--ink-gray);
+  letter-spacing: 0.02em;
+  /* 两行省略 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.history-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+}

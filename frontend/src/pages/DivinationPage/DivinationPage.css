@@ -48,3 +48,22 @@
   line-height: 1.9;
   text-align: center;
 }
+
+.divine-kn-btn {
+  margin-top: 0.6rem;
+  background: transparent;
+  border: 1px solid var(--ink-light);
+  border-radius: 14px;
+  color: var(--ink-gray);
+  font-family: var(--font-brush);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  padding: 3px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.divine-kn-btn:hover {
+  color: var(--red-seal);
+  border-color: var(--red-seal);
+}

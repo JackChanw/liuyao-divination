@@ -1,0 +1,62 @@
+.global-nav {
+  position: fixed;
+  top: 1.4rem;
+  right: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  z-index: 90;
+}
+
+.global-seal {
+  padding: 0.4rem 0.8rem;
+  background: var(--red-seal);
+  color: var(--ink-paper);
+  font-family: var(--font-brush);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  writing-mode: vertical-rl;
+  border-radius: 1px;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  transition: filter 0.15s, transform 0.05s;
+}
+
+a.global-seal:hover {
+  filter: brightness(1.08);
+}
+a.global-seal:active {
+  transform: translateY(1px);
+}
+
+.global-history-link {
+  padding: 0.25rem 0.7rem;
+  background: rgba(245, 238, 216, 0.85);
+  border: 1px solid var(--ink-light);
+  border-radius: 12px;
+  font-family: var(--font-brush);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-gray);
+  transition: all 0.15s;
+}
+
+.global-history-link:hover {
+  color: var(--red-seal);
+  border-color: var(--red-seal);
+  background: rgba(255, 252, 240, 0.95);
+}
+
+@media (max-width: 480px) {
+  .global-nav {
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+  .global-seal {
+    font-size: 0.78rem;
+  }
+  .global-history-link {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+  }
+}

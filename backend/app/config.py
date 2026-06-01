@@ -15,6 +15,9 @@ class Settings(BaseSettings):
 
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
 
+    database_url: str = "sqlite+aiosqlite:///./liuyao.db"
+    public_base_url: str = "http://localhost:5173"
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

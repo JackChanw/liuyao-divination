@@ -3,25 +3,32 @@ import { useState } from 'react';
 import { useDivinationStore } from '@/stores/divinationStore';
 import InkButton from '@/components/common/InkButton';
 import InkInput from '@/components/common/InkInput';
+import KnowledgeOverlay from '@/components/KnowledgeOverlay';
 import './HomePage.css';
 
 export default function HomePage() {
   const setQuestion = useDivinationStore((s) => s.setQuestion);
   const reset = useDivinationStore((s) => s.reset);
   const [text, setText] = useState('');
+  const [knOpen, setKnOpen] = useState(false);
+  const [knSection, setKnSection] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
 
-  const onStart = () => {
+  const startWithMode = (mode: 'manual' | 'auto') => {
     const q = text.trim();
     if (q.length < 2) return;
     reset();
     setQuestion(q);
-    navigate('/divine');
+    navigate(`/divine?mode=${mode}`);
+  };
+
+  const openKn = (section?: string) => {
+    setKnSection(section);
+    setKnOpen(true);
   };
 
   return (
     <div className="home-page animate-page-in">
-      <div className="seal-corner">玄机问卜</div>
       <header className="home-header">
         <h1 className="home-title">六　爻　占　卜</h1>
         <p className="home-subtitle">
@@ -30,6 +37,16 @@ export default function HomePage() {
           心诚则灵，问其所惑，玄机自现
         </p>
       </header>
+
+      <section className="home-intro">
+        <p className="home-intro-text">
+          <strong>六爻</strong>是中国传统占卜方式，以阴阳爻象演变映照所问之事。本应用融合古法
+          <strong>蓍草十有八变</strong>与现代 AI，由占卜师"玄机子"为你解卦。
+        </p>
+        <button className="home-kn-link" onClick={() => openKn()}>
+          📜 卦理浅说
+        </button>
+      </section>
 
       <section className="home-form">
         <InkInput
@@ -42,16 +59,38 @@ export default function HomePage() {
         />
         <div className="char-count">{text.length} / 200</div>
 
-        <div className="home-actions">
-          <InkButton onClick={onStart} disabled={text.trim().length < 2}>
-            起　卦
-          </InkButton>
+        <div className="home-actions home-actions-dual">
+          <div className="home-action-block">
+            <InkButton onClick={() => startWithMode('manual')} disabled={text.trim().length < 2} variant="ghost">
+              亲　手　揲　蓍
+            </InkButton>
+            <button className="home-mode-tip" onClick={() => openKn('yarrow')}>
+              古法 18 变 · 约 3 分钟
+            </button>
+          </div>
+
+          <div className="home-action-divider">或</div>
+
+          <div className="home-action-block">
+            <InkButton onClick={() => startWithMode('auto')} disabled={text.trim().length < 2}>
+              一　键　成　卦
+            </InkButton>
+            <button className="home-mode-tip" onClick={() => openKn('how-to-use')}>
+              系统模拟 · 约 4 秒
+            </button>
+          </div>
         </div>
       </section>
 
       <footer className="home-footer">
         <span>※ 占卜之事，唯诚乃灵 ※</span>
       </footer>
+
+      <KnowledgeOverlay
+        open={knOpen}
+        onClose={() => setKnOpen(false)}
+        initialSection={knSection}
+      />
     </div>
   );
 }

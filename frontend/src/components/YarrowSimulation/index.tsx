@@ -3,6 +3,7 @@ import type { Line } from '@/types/hexagram';
 import LineSymbol from '@/components/HexagramDisplay/LineSymbol';
 import '@/components/HexagramDisplay/LineSymbol.css';
 import InkButton from '@/components/common/InkButton';
+import InfoTip from '@/components/common/InfoTip';
 import { useYarrowLogic } from './useYarrowLogic';
 import './YarrowSimulation.css';
 
@@ -105,6 +106,27 @@ export default function YarrowSimulation({ onComplete }: Props) {
     return `第 ${yarrow.roundNumber} 爻 · 第 ${yarrow.changeNumber} 变`;
   }, [yarrow.step, yarrow.roundNumber, yarrow.changeNumber]);
 
+  const stepTip = useMemo(() => {
+    switch (yarrow.step) {
+      case 'idle':
+        return '把手中蓍草随机分成左右两堆（"分二"），每堆至少 1 根。';
+      case 'splitting':
+        return '蓍草正在分入左右两堆…';
+      case 'split-done':
+        return '从右堆取一根置于一旁（"挂一"），再左右各以四根为一组数（"揲四"），余数置旁。';
+      case 'count':
+        return '正在数蓍——左堆 mod 4、右堆 mod 4，余 0 记为 4。';
+      case 'change-done':
+        return `本变结束，置旁 ${yarrow.currentChange?.asideTotal ?? '?'} 根。第一变必为 5/9，二三变必为 4/8。`;
+      case 'round-done':
+        return '三变得本爻：余 36→9（老阳·动），32→8（少阴），28→7（少阳），24→6（老阴·动）。';
+      case 'all-done':
+        return '十有八变而成卦，本卦已现。';
+      default:
+        return '';
+    }
+  }, [yarrow.step, yarrow.currentChange]);
+
   const actionButton = (() => {
     switch (yarrow.step) {
       case 'idle':
@@ -137,27 +159,39 @@ export default function YarrowSimulation({ onComplete }: Props) {
   return (
     <div className="yarrow-sim">
       <div className="yarrow-header">
-        <span className="yarrow-stage">{stepLabel}</span>
+        <span className="yarrow-stage">
+          {stepLabel}
+          <InfoTip text={stepTip} />
+        </span>
         <span className="yarrow-meta">余蓍 {yarrow.available}</span>
       </div>
 
       <div className="yarrow-stage-wrap">
         <div className="yarrow-zone yarrow-zone-aside">
-          <span className="zone-label">挂　一</span>
+          <span className="zone-label">
+            挂　一
+            <InfoTip text="本变置旁的总根数 = 1（挂一）+ 左堆 mod 4 + 右堆 mod 4。" />
+          </span>
           {yarrow.currentChange && yarrow.step !== 'idle' && yarrow.step !== 'splitting' && (
             <div className="aside-num">{yarrow.currentChange.asideTotal}</div>
           )}
         </div>
 
         <div className="yarrow-zone yarrow-zone-left">
-          <span className="zone-label">左　堆</span>
+          <span className="zone-label">
+            左　堆
+            <InfoTip text="分二之后的左堆。四根一组数，余数置旁。" />
+          </span>
           {yarrow.currentChange && (yarrow.step === 'split-done' || yarrow.step === 'count' || yarrow.step === 'change-done') && (
             <div className="pile-num">{yarrow.currentChange.leftPile}</div>
           )}
         </div>
 
         <div className="yarrow-zone yarrow-zone-right">
-          <span className="zone-label">右　堆</span>
+          <span className="zone-label">
+            右　堆
+            <InfoTip text="分二之后的右堆。先取一根挂一，剩余四根一组数。" />
+          </span>
           {yarrow.currentChange && (yarrow.step === 'split-done' || yarrow.step === 'count' || yarrow.step === 'change-done') && (
             <div className="pile-num">{yarrow.currentChange.rightPile}</div>
           )}

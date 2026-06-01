@@ -82,3 +82,14 @@ export const HEXAGRAM_INDEX: Record<string, HexagramIndexEntry> = {
 export function lookupByBinary(binary: string): HexagramIndexEntry | null {
   return HEXAGRAM_INDEX[binary] ?? null;
 }
+
+let _byIdCache: Map<number, HexagramIndexEntry> | null = null;
+export function lookupById(id: number): HexagramIndexEntry | null {
+  if (!_byIdCache) {
+    _byIdCache = new Map();
+    for (const entry of Object.values(HEXAGRAM_INDEX)) {
+      _byIdCache.set(entry.id, entry);
+    }
+  }
+  return _byIdCache.get(id) ?? null;
+}

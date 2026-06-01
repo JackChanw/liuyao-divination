@@ -1,0 +1,174 @@
+/* 隐藏的截图源：放在视口外但仍参与渲染（html-to-image 需要 layout） */
+.share-card-capture-host {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  width: 750px;
+  height: 1334px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+}
+
+/* 遮罩层 */
+.share-sheet-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 16, 8, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  animation: shareMaskIn 0.2s ease-out;
+}
+
+@keyframes shareMaskIn {
+  from { background: rgba(26, 16, 8, 0); }
+  to   { background: rgba(26, 16, 8, 0.45); }
+}
+
+.share-sheet {
+  width: 100%;
+  max-width: 480px;
+  background: var(--ink-paper);
+  border-radius: 18px 18px 0 0;
+  padding: 12px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: 0 -8px 30px rgba(26, 16, 8, 0.25);
+  animation: shareSheetIn 0.28s cubic-bezier(0.2, 0.7, 0.3, 1);
+  font-family: var(--font-body);
+  color: var(--ink-black);
+}
+
+@keyframes shareSheetIn {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.share-sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--ink-light);
+  border-radius: 2px;
+  align-self: center;
+  margin: 4px 0 14px;
+}
+
+.share-sheet-title {
+  font-family: var(--font-brush);
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: var(--ink-black);
+  margin-bottom: 6px;
+}
+
+.share-sheet-subtitle {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-gray);
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+}
+
+.share-sheet-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.share-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(245, 238, 216, 0.6);
+  border: 1px solid var(--ink-light);
+  border-radius: 12px;
+  padding: 12px 14px;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  transition: background 0.15s, transform 0.05s;
+}
+
+.share-option:hover:not(:disabled) {
+  background: rgba(184, 150, 12, 0.10);
+}
+.share-option:active:not(:disabled) {
+  transform: scale(0.985);
+}
+.share-option:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.share-option-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--red-seal);
+  color: var(--ink-paper);
+  font-family: var(--font-brush);
+  font-size: 22px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+.share-option-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.share-option-title {
+  font-family: var(--font-brush);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: var(--ink-black);
+}
+
+.share-option-desc {
+  font-size: 12px;
+  color: var(--ink-gray);
+  letter-spacing: 0.05em;
+}
+
+.share-sheet-status {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  padding: 6px 0;
+}
+
+.share-sheet-status.loading {
+  color: var(--ink-gray);
+}
+.share-sheet-status.done {
+  color: var(--gold-accent);
+}
+.share-sheet-status.error {
+  color: var(--red-seal);
+}
+
+.share-sheet-cancel {
+  margin-top: 14px;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid var(--ink-light);
+  border-radius: 10px;
+  color: var(--ink-dark);
+  font-family: var(--font-brush);
+  font-size: 16px;
+  letter-spacing: 0.2em;
+}
+
+.share-sheet-cancel:disabled {
+  opacity: 0.4;
+}

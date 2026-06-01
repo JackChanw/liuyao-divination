@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDivinationStore } from '@/stores/divinationStore';
 import HexagramGrid from '@/components/HexagramDisplay/HexagramGrid';
@@ -6,6 +6,8 @@ import InterpretationStream from '@/components/InterpretationStream';
 import { useSSEStream } from '@/components/InterpretationStream/useSSEStream';
 import InkButton from '@/components/common/InkButton';
 import LoadingBrush from '@/components/common/LoadingBrush';
+import ShareSheet from '@/components/ShareSheet';
+import KnowledgeOverlay from '@/components/KnowledgeOverlay';
 import { lookupByBinary } from '@/data/hexagrams';
 import {
   linesToBinary,
@@ -34,8 +36,14 @@ export default function ResultPage() {
   const interpretation = useDivinationStore((s) => s.interpretation);
   const appendInterpretation = useDivinationStore((s) => s.appendInterpretation);
   const resetInterpretation = useDivinationStore((s) => s.resetInterpretation);
+  const currentToken = useDivinationStore((s) => s.currentToken);
+  const setCurrentToken = useDivinationStore((s) => s.setCurrentToken);
 
   const startedRef = useRef(false);
+  const persistedRef = useRef(false);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [knOpen, setKnOpen] = useState(false);
+  const [knSection, setKnSection] = useState<string | undefined>(undefined);
 
   const primaryBin = useMemo(() => (lines.length === 6 ? linesToBinary(lines) : null), [lines]);
   const changedBin = useMemo(
@@ -92,7 +100,44 @@ export default function ResultPage() {
     navigate('/');
   };
 
+  // SSE 解卦完成后自动落库到历史（同一会话只触发一次）
+  useEffect(() => {
+    if (sse.status !== 'done') return;
+    if (persistedRef.current) return;
+    if (currentToken) {
+      persistedRef.current = true;
+      return;
+    }
+    if (!primaryIdx || interpretation.length === 0) return;
+    persistedRef.current = true;
+    (async () => {
+      try {
+        const r = await fetch('/api/history', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            question,
+            lines,
+            primary_hexagram_id: primaryIdx.id,
+            changed_hexagram_id: changedIdx?.id ?? null,
+            interpretation,
+          }),
+        });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const body = (await r.json()) as { token: string };
+        setCurrentToken(body.token);
+      } catch (e) {
+        // 不打断用户主流程，仅打日志
+        console.warn('[history] persist failed', e);
+        persistedRef.current = false; // 允许之后由分享/分页等重试入口再次尝试
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sse.status, primaryIdx?.id, changedIdx?.id]);
+
   if (!question || lines.length !== 6) return null;
+
+  const canShare = sse.status === 'done' && interpretation.length > 0 && !!primaryIdx;
 
   return (
     <div className="result-page animate-page-in">
@@ -175,10 +220,46 @@ export default function ResultPage() {
       </section>
 
       <footer className="result-footer">
+        {canShare && (
+          <InkButton onClick={() => setShareOpen(true)} variant="primary">
+            分　享　此　卦
+          </InkButton>
+        )}
         <InkButton onClick={onAgain} variant="ghost">
           再　占　一　卦
         </InkButton>
+        <button
+          className="result-kn-btn"
+          onClick={() => {
+            setKnSection('lines');
+            setKnOpen(true);
+          }}
+        >
+          📜 怎么读这一卦？
+        </button>
       </footer>
+
+      {canShare && primaryIdx && (
+        <ShareSheet
+          open={shareOpen}
+          onClose={() => setShareOpen(false)}
+          question={question}
+          lines={lines}
+          primary={primary}
+          changed={changed}
+          interpretation={interpretation}
+          primaryHexagramId={primaryIdx.id}
+          changedHexagramId={changedIdx?.id ?? null}
+          existingToken={currentToken}
+          onTokenResolved={(t) => setCurrentToken(t)}
+        />
+      )}
+
+      <KnowledgeOverlay
+        open={knOpen}
+        onClose={() => setKnOpen(false)}
+        initialSection={knSection}
+      />
     </div>
   );
 }

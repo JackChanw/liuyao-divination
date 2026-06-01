@@ -138,5 +138,26 @@
 .result-footer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 1rem;
+}
+
+.result-kn-btn {
+  background: transparent;
+  border: 1px solid var(--ink-light);
+  border-radius: 14px;
+  color: var(--ink-gray);
+  font-family: var(--font-brush);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.result-kn-btn:hover {
+  color: var(--red-seal);
+  border-color: var(--red-seal);
 }

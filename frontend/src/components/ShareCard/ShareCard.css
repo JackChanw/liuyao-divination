@@ -1,0 +1,292 @@
+/* ShareCard 截图版面 — 固定 750×1334 */
+
+.share-card {
+  width: 750px;
+  height: 1334px;
+  background: var(--ink-paper);
+  background-image:
+    radial-gradient(ellipse at top left, rgba(184, 150, 12, 0.06), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(107, 94, 78, 0.10), transparent 50%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(107, 94, 78, 0.020) 0,
+      rgba(107, 94, 78, 0.020) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  padding: 56px 56px 48px;
+  font-family: var(--font-body);
+  color: var(--ink-black);
+  position: relative;
+  overflow: hidden;
+}
+
+.share-card-paper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--ink-gray);
+  padding: 36px 40px;
+  position: relative;
+}
+
+.share-card-paper::before,
+.share-card-paper::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--ink-gray);
+}
+.share-card-paper::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+.share-card-paper::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Header */
+.share-card-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.share-card-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.share-card-brand-line {
+  flex: 1;
+  height: 1px;
+  background: var(--ink-gray);
+  max-width: 120px;
+}
+
+.share-card-title {
+  font-family: var(--font-brush);
+  font-size: 38px;
+  letter-spacing: 0.1em;
+  color: var(--ink-black);
+}
+
+.share-card-subtitle {
+  font-family: var(--font-brush);
+  font-size: 18px;
+  color: var(--ink-gray);
+  letter-spacing: 0.3em;
+  padding: 0 4px;
+}
+
+/* 问题 */
+.share-card-question {
+  margin: 18px 0 24px;
+  text-align: center;
+}
+
+.share-card-q-label {
+  font-family: var(--font-brush);
+  font-size: 15px;
+  color: var(--ink-gray);
+  letter-spacing: 0.4em;
+  margin-bottom: 8px;
+}
+
+.share-card-q-text {
+  font-family: var(--font-brush);
+  font-size: 26px;
+  color: var(--ink-dark);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  padding: 0 16px;
+}
+
+/* 卦象区 */
+.share-card-hexagrams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin: 16px 0 24px;
+  transform: scale(0.85);
+  transform-origin: center;
+}
+
+.share-card-arrow {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-brush);
+  font-size: 24px;
+  color: var(--red-seal);
+}
+.share-card-arrow span {
+  border: 1px solid var(--red-seal);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Section 通用 */
+.share-card-section-title {
+  font-family: var(--font-brush);
+  font-size: 18px;
+  color: var(--ink-gray);
+  letter-spacing: 0.3em;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--ink-light);
+}
+
+/* 卦辞 */
+.share-card-guaci {
+  margin: 8px 8px 16px;
+}
+
+.share-card-guaci-text {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink-dark);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* 解卦节录 */
+.share-card-summary {
+  margin: 8px 8px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.share-card-summary-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink-black);
+  text-indent: 2em;
+  letter-spacing: 0.02em;
+  text-align: justify;
+  flex: 1;
+}
+
+/* Footer：印章 + 落款 + 二维码 */
+.share-card-footer {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ink-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.share-card-signoff {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 玄机子印章 */
+.share-card-seal {
+  width: 88px;
+  height: 88px;
+  background: var(--red-seal);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 0 0 3px var(--ink-paper),
+    inset 0 0 0 4px var(--red-seal),
+    0 2px 6px rgba(183, 46, 30, 0.4);
+}
+
+.share-card-seal-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  padding: 8px;
+}
+
+.share-card-seal-text span {
+  color: var(--ink-paper);
+  font-family: var(--font-brush);
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+}
+/* 印章篆文阅读顺序：右上 → 右下 → 左上 → 左下，但近现代印章常见为竖读"玄机/子印" */
+.share-card-seal-text span:nth-child(1) { grid-column: 1; grid-row: 1; }
+.share-card-seal-text span:nth-child(2) { grid-column: 1; grid-row: 2; }
+.share-card-seal-text span:nth-child(3) { grid-column: 2; grid-row: 1; }
+.share-card-seal-text span:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+.share-card-date {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-brush);
+  color: var(--ink-dark);
+  letter-spacing: 0.08em;
+}
+
+.share-card-date-lunar {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.share-card-date-greg {
+  font-size: 13px;
+  color: var(--ink-gray);
+}
+
+/* 二维码 */
+.share-card-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.share-card-qr-img {
+  width: 96px;
+  height: 96px;
+  border: 1px solid var(--ink-light);
+  background: #fff;
+  padding: 4px;
+}
+
+.share-card-qr-tip {
+  font-size: 11px;
+  color: var(--ink-gray);
+  letter-spacing: 0.1em;
+}
+
+.share-card-watermark {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  color: var(--ink-light);
+  letter-spacing: 0.1em;
+}

@@ -73,3 +73,109 @@
   color: var(--ink-gray);
   letter-spacing: 0.4em;
 }
+
+/* 引导区 */
+.home-intro {
+  width: 100%;
+  background: rgba(184, 150, 12, 0.06);
+  border-left: 3px solid var(--gold-accent);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.home-intro-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ink-dark);
+  letter-spacing: 0.04em;
+}
+
+.home-intro-text strong {
+  color: var(--red-seal);
+  font-weight: 500;
+  font-family: var(--font-brush);
+  margin: 0 2px;
+  letter-spacing: 0.06em;
+}
+
+.home-kn-link {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--ink-light);
+  border-radius: 14px;
+  color: var(--ink-gray);
+  font-family: var(--font-brush);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.home-kn-link:hover {
+  color: var(--red-seal);
+  border-color: var(--red-seal);
+}
+
+/* 双模式按钮 */
+.home-actions-dual {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.home-action-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 130px;
+}
+
+.home-mode-tip {
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--ink-gray);
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 2px 4px;
+  text-decoration: underline;
+  text-decoration-color: var(--ink-light);
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+
+.home-mode-tip:hover {
+  color: var(--red-seal);
+}
+
+.home-action-divider {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-brush);
+  color: var(--ink-light);
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  padding-bottom: 28px; /* 与按钮垂直对齐 */
+}
+
+@media (max-width: 480px) {
+  .home-actions-dual {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .home-action-divider {
+    padding-bottom: 0;
+    padding: 4px 0;
+  }
+}
